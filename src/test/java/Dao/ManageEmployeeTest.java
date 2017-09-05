@@ -1,7 +1,6 @@
 package Dao;
 
-import org.apache.commons.lang3.StringUtils;
-import org.hibernate.cfg.Configuration;
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -20,6 +19,9 @@ import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
  */
 public class ManageEmployeeTest {
     ManageEmployee ME;
+    Integer empID1;
+    Integer empID2;
+    Integer empID3;
 
     @Before
     public void before() throws Exception {
@@ -43,7 +45,11 @@ public class ManageEmployeeTest {
      */
     @Test
     public void testAddEmployee() throws Exception {
-//TODO: Test goes here... 
+//TODO: Test goes here...
+        /* Add few employee records in database */
+        empID1 = ME.addEmployee("Zara", "Ali", 1000);
+        empID2 = ME.addEmployee("Daisy", "Das", 5000);
+        empID3 = ME.addEmployee("John", "Paul", 10000);
     }
 
     /**
@@ -60,7 +66,9 @@ public class ManageEmployeeTest {
      */
     @Test
     public void testUpdateEmployee() throws Exception {
-//TODO: Test goes here... 
+//TODO: Test goes here...
+        /* Update employee's records */
+        ME.updateEmployee(empID1, 5000);
     }
 
     /**
@@ -68,35 +76,7 @@ public class ManageEmployeeTest {
      */
     @Test
     public void testDeleteEmployee() throws Exception {
-//TODO: Test goes here... 
+//TODO: Test goes here...
+        ME.deleteEmployee(empID2);
     }
-
-    @Test
-    public void testQueryFirstName() throws Exception {
-        ME.queryFirstName();
-    }
-
-    @Test
-    public void testNoQueryFirstName() throws Exception {
-        ME.noQueryFirstName();
-    }
-
-    @Test
-    public void testjoin() throws Exception {
-        String[] array = {"a", "b", "c", "d"};
-        System.out.println(ME.join(array));
-    }
-
-    @Test
-    public void testSelect() throws Exception {
-        String[] array = {"a", "b", "c", "d"};
-        System.out.println(StringUtils.join(array, "-"));
-    }
-    @Test
-    public void testCustomSelect() throws Exception {
-        String[] array = {"id", "firstName", "lastName", "salary"};
-        List<Map> map = ME.customSelect(array, "Employee");
-        System.out.println(map);
-    }
-
 } 
